@@ -1,15 +1,18 @@
 import React, { Fragment, memo } from 'react';
 import Grid from '@material-ui/core/Grid';
-import TextField from 'components/Shared/Fields/Text';
-import Button from '@material-ui/core/Button';
-import Toolbar from 'components/Layout/Toolbar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Hidden from '@material-ui/core/Hidden';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import * as yup from 'yup';
+
 import { useFormikObservable } from 'hooks/useFormikObservable';
-import orderService from 'services/order';
 import { logError } from 'helpers/rxjs-operators/logError';
+import orderService from 'services/order';
+
+import TextField from 'components/Shared/Fields/Text';
+import Toolbar from 'components/Layout/Toolbar';
 import PaymentIllus from 'assets/illustrations/payment.svg';
 
 const useStyles = makeStyles({
@@ -45,7 +48,7 @@ const Order = memo((props: {}) => {
 
       <Grid container spacing={3} className={classes.container}>
         <Grid container component='form' onSubmit={formik.handleSubmit} spacing={3}>
-          <Grid item xs={6} component={Card}>
+          <Grid item xs={12} md={6} component={Card}>
             <Grid container component={CardContent} spacing={3}>
               <Grid
                 item
@@ -83,9 +86,11 @@ const Order = memo((props: {}) => {
               <Button type='submit'>Realizar pedido</Button>
             </Grid>
           </Grid>
-          <Grid container item xs={6} component='aside' alignItems='center' justify='center'>
-            <img src={PaymentIllus} alt='Ilustração de um homem segurando um cartão de crédito' />
-          </Grid>
+          <Hidden mdDown>
+            <Grid container item xs={6} component='aside' alignItems='center' justify='center'>
+              <img src={PaymentIllus} alt='Ilustração de um homem segurando um cartão de crédito' />
+            </Grid>
+          </Hidden>
         </Grid>
       </Grid>
     </Fragment>
