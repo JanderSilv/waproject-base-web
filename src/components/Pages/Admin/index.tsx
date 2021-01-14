@@ -4,6 +4,7 @@ import AccountMultipleIcon from 'mdi-react/AccountMultipleIcon';
 import StarIcon from 'mdi-react/StarIcon';
 import ViewDashboardIcon from 'mdi-react/ViewDashboardIcon';
 import BasketFillIcon from 'mdi-react/BasketFillIcon';
+import FormatListIcon from 'mdi-react/FormatListBulletedSquareIcon';
 import React, { memo, useCallback, useRef, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
@@ -11,6 +12,7 @@ import DashboardIndexPage from './Dashboard';
 import SamplePage from './Sample';
 import UserIndexPage from './Users';
 import OrderIndexPage from './Order';
+import OrdersIndexPage from './Orders/List';
 
 export const ScrollTopContext = React.createContext<Function>(() => {});
 
@@ -47,6 +49,7 @@ const AdminPage = memo((props: {}) => {
     },
     { path: '/exemplos', display: 'Exemplos', icon: StarIcon },
     { path: '/realizar-pedido', display: 'Realizar Pedido', icon: BasketFillIcon },
+    { path: '/pedidos', display: 'Pedidos', icon: FormatListIcon }
   ]);
 
   const scrollTop = useCallback(() => setTimeout(() => mainContent.current.scrollTo(0, 0), 100), []);
@@ -58,6 +61,7 @@ const AdminPage = memo((props: {}) => {
         <Drawer menu={menu}>
           <main ref={mainContent} className={classes.content}>
             <Switch>
+              <Route path='/pedidos' component={OrdersIndexPage} />
               <Route path='/realizar-pedido' component={OrderIndexPage} />
               <Route path='/exemplos' component={SamplePage} />
               <Route path='/usuarios' component={UserIndexPage} />
