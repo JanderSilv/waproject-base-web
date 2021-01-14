@@ -1,4 +1,3 @@
-import { TableCell } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
@@ -7,6 +6,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 import Toolbar from 'components/Layout/Toolbar';
 import CardLoader from 'components/Shared/CardLoader';
 import EmptyAndErrorMessages from 'components/Shared/Pagination/EmptyAndErrorMessages';
@@ -54,7 +54,7 @@ const UserListPage = memo(() => {
               <TableRow>
                 <TableCell />
                 <TableCellSortable paginationParams={params} disabled={loading} onChange={mergeParams} column='id'>
-                  Indentificador:
+                  Identificador:
                 </TableCellSortable>
                 <TableCellSortable
                   paginationParams={params}
