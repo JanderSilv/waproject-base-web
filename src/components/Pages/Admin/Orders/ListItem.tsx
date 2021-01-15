@@ -8,6 +8,7 @@ import ChevronUpIcon from 'mdi-react/ChevronUpIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import React, { Fragment, memo, useCallback, useState } from 'react';
 import { IOrder } from 'interfaces/models/order';
+import useMask from 'hooks/useMask';
 
 interface IProps {
   order: IOrder;
@@ -15,6 +16,7 @@ interface IProps {
 
 const ListItem = memo((props: IProps) => {
   const { order } = props;
+  const { maskedValue: maskedOrderValue } = useMask('money', order.value);
   const [open, setOpen] = useState(false);
 
   const handleCollapse = useCallback(() => {
@@ -31,7 +33,7 @@ const ListItem = memo((props: IProps) => {
         </TableCell>
         <TableCell>{order.id}</TableCell>
         <TableCell>{order.quantity}</TableCell>
-        <TableCell>{order.value}</TableCell>
+        <TableCell>{maskedOrderValue}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

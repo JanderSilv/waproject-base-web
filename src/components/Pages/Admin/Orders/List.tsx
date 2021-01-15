@@ -1,6 +1,4 @@
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,7 +8,6 @@ import TableCell from '@material-ui/core/TableCell';
 import Toolbar from 'components/Layout/Toolbar';
 import CardLoader from 'components/Shared/CardLoader';
 import EmptyAndErrorMessages from 'components/Shared/Pagination/EmptyAndErrorMessages';
-import SearchField from 'components/Shared/Pagination/SearchField';
 import TableCellActions from 'components/Shared/Pagination/TableCellActions';
 import TableCellSortable from 'components/Shared/Pagination/TableCellSortable';
 import TablePagination from 'components/Shared/Pagination/TablePagination';
@@ -39,14 +36,6 @@ const UserListPage = memo(() => {
 
       <Card>
         <CardLoader show={loading} />
-
-        <CardContent>
-          <Grid container justify='space-between' alignItems='center' spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <SearchField paginationParams={params} onChange={mergeParams} />
-            </Grid>
-          </Grid>
-        </CardContent>
 
         <TableWrapper minWidth={500}>
           <Table>
