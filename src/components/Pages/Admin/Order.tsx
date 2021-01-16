@@ -10,11 +10,13 @@ import * as yup from 'yup';
 import { useFormikObservable } from 'hooks/useFormikObservable';
 import { logError } from 'helpers/rxjs-operators/logError';
 import orderService from 'services/order';
+import { tap } from 'rxjs/operators';
 
 import TextField from 'components/Shared/Fields/Text';
 import Toolbar from 'components/Layout/Toolbar';
 import CardLoader from 'components/Shared/CardLoader';
 import PaymentIllus from 'assets/illustrations/payment.svg';
+import Toast from 'components/Shared/Toast';
 
 const useStyles = makeStyles({
   container: {
@@ -43,7 +45,13 @@ const Order = memo((props: {}) => {
         ...model,
         quantity: Number(model.quantity)
       };
-      return orderService.create(auxModel).pipe(logError(true));
+      return orderService.create(auxModel).pipe(
+        tap(() => {
+          Toast.show('Pedido criado com sucesso');
+          formik.resetForm();
+        }),
+        logError(true)
+      );
     }
   });
 
