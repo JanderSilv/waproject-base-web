@@ -13,6 +13,7 @@ import orderService from 'services/order';
 
 import TextField from 'components/Shared/Fields/Text';
 import Toolbar from 'components/Layout/Toolbar';
+import CardLoader from 'components/Shared/CardLoader';
 import PaymentIllus from 'assets/illustrations/payment.svg';
 
 const useStyles = makeStyles({
@@ -38,7 +39,11 @@ const Order = memo((props: {}) => {
     initialValues: { description: '', quantity: 0, value: 0 },
     validationSchema,
     onSubmit(model) {
-      return orderService.create(model).pipe(logError(true));
+      const auxModel = {
+        ...model,
+        quantity: Number(model.quantity)
+      };
+      return orderService.create(auxModel).pipe(logError(true));
     }
   });
 
@@ -49,6 +54,7 @@ const Order = memo((props: {}) => {
       <Grid container spacing={3} className={classes.container}>
         <Grid container component='form' onSubmit={formik.handleSubmit} spacing={3}>
           <Grid item xs={12} md={6} component={Card}>
+            <CardLoader show={formik.isSubmitting} />
             <Grid container component={CardContent} spacing={3}>
               <Grid
                 item

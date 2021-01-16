@@ -12,7 +12,7 @@ export class OrderService {
   }
 
   public list(params: IPaginationParams): Observable<IPaginationResponse<IOrder>> {
-    return this.apiService.get('/orders', params);
+    return this.apiService.get('/order', params);
   }
 }
 
