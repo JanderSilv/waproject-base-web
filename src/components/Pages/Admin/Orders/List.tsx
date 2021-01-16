@@ -52,9 +52,7 @@ const UserListPage = memo(() => {
             <TableHead>
               <TableRow>
                 <TableCell />
-                <TableCellSortable paginationParams={params} disabled={loading} onChange={mergeParams} column='id'>
-                  Identificador:
-                </TableCellSortable>
+                <TableCell>Identificador</TableCell>
                 <TableCellSortable
                   paginationParams={params}
                   disabled={loading}
